@@ -36,6 +36,10 @@ $opcionMenu="A";
 
 	<!-- Estilos propios -->
 	<link rel="stylesheet" type="text/css" href="../css/estilos.css">
+
+	<!-- Alertify	 -->
+	<link rel="stylesheet" type="text/css" href="../plugins/alertifyjs/css/alertify.css">
+	<link rel="stylesheet" type="text/css" href="../plugins/alertifyjs/css/themes/bootstrap.css">
 </head>
 
 <body>
@@ -96,7 +100,7 @@ $opcionMenu="A";
 									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 										<div class="form-group">
 											<label for="Telefono">Teléfono:</label>
-											<input type="text" id="Telefono" class="form-control " required="" placeholder="Escribe el telefono">
+											<input type="text" id="telefono" class="form-control " required="" placeholder="Escribe el telefono">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -115,8 +119,8 @@ $opcionMenu="A";
 										<div class="form-group">
 											<label for="tipo">Tipo de persona:</label>
 											<select  id="tipo" class="select2 form-control " style="width: 100%">
-												<option value="M">Masculino</option>
-												<option value="F">Femenino</option>
+												<option value="estudiante">Estudiante</option>
+												<option value="trabajador">Trabajador</option>
 											</select>
 										</div>
 									</div>
@@ -178,6 +182,9 @@ $opcionMenu="A";
     <script type="text/javascript" src="../plugins/dataTableButtons/vfs_fonts.js"></script>
     <script type="text/javascript" src="../plugins/dataTableButtons/buttons.html5.min.js"></script>
     <script type="text/javascript" src="../plugins/dataTableButtons/buttons.print.min.js"></script>
+	
+	<!-- alertify -->
+	<script type="text/javascript" src="../plugins/alertifyjs/alertify.js"></script>
 
     <!-- Funciones propias -->
     <script src="funciones.js"></script>

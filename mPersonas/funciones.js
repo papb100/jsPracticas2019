@@ -33,15 +33,39 @@ $('#btnLista').on('click',function(){
 });
 
 $("#frmAlta").submit(function(e){
-    var variable = $("#variable").val();
+  
+    var nombre    = $("#nombre").val();
+    var paterno   = $("#paterno").val();
+    var materno   = $("#materno").val();
+    var direccion = $("#direccion").val();
+    var sexo      = $("#sexo").val();
+    var telefono  = $("#telefono").val();
+    var fecha_nac = $("#fecha_nac").val();
+    var correo    = $("#correo").val();
+    var tipo      = $("#tipo").val();
+
         $.ajax({
             url:"guardar.php",
             type:"POST",
             dateType:"html",
-            data:{'variable':variable,},
+            data:{
+                    'nombre':nombre,
+                    'paterno':paterno,
+                    'materno':materno,
+                    'direccion':direccion,
+                    'sexo':sexo,
+                    'telefono':telefono,
+                    'fecha_nac':fecha_nac,
+                    'correo':correo,
+                    'tipo':tipo
+                 },
             success:function(respuesta){
+              
             alertify.set('notifier','position', 'bottom-right');
-            alertify.success('El registro ha sido guardado' );
+            alertify.success('Se ha guardado el registro' );
+            $("#frmAlta")[0].reset();
+            $("#nombre").focus();
+            // llenarLista();
             },
             error:function(xhr,status){
                 alert(xhr);
@@ -50,4 +74,3 @@ $("#frmAlta").submit(function(e){
         e.preventDefault();
         return false;
 });
-
