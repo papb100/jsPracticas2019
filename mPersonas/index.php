@@ -151,6 +151,97 @@ $opcionMenu="A";
 
 	</footer>
 
+	<!-- Modal -->
+	<div id="modalEditar" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-lg">
+
+	    <!-- Modal content-->
+	    <form id="frmActuliza">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Editar datos personas</h4>
+	      </div>
+	      <div class="modal-body">
+			
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
+						<div class="form-group">
+							<label for="nombreE">Nombre de la Persona:</label>
+							<input type="text" id="nombreE" class="form-control " autofocus="" required="" placeholder="Escribe el nombre">
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+						<div class="form-group">
+							<label for="paternoE">Apellido Paterno:</label>
+							<input type="text" id="paternoE" class="form-control " required="" placeholder="Escribe el apellido">
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+						<div class="form-group">
+							<label for="maternoE">Apellido Materno:</label>
+							<input type="text" id="maternoE" class="form-control " required="" placeholder="Escribe el apellido">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="form-group">
+							<label for="direccionE">Dirección:</label>
+							<input type="text" id="direccionE" class="form-control " required="" placeholder="Escribe la dirección completo">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="sexoE">Sexo:</label>
+							<select  id="sexoE" class="select2 form-control " style="width: 100%">
+								<option value="M">Masculino</option>
+								<option value="F">Femenino</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="telefonoE">Teléfono:</label>
+							<input type="text" id="telefonoE" class="form-control " required="" placeholder="Escribe el telefono">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="fecha_nacE">Fecha de Nacimiento:</label>
+							<input type="date" id="fecha_nacE" class="form-control " required="" placeholder="yyyy-mm-dd">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+						<div class="form-group">
+							<label for="correoE">Correo:</label>
+							<input type="text" id="correoE" class="form-control " required="" placeholder="email">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+						<div class="form-group">
+							<label for="tipoE">Tipo de persona:</label>
+							<select  id="tipoE" class="select2 form-control " style="width: 100%">
+								<option value="estudiante">Estudiante</option>
+								<option value="trabajador">Trabajador</option>
+							</select>
+						</div>
+					</div>
+					<hr class="linea">
+				</div>
+	      </div>
+	      <div class="modal-footer">
+				<div class="row">
+					<div class="col-lg-12">
+						<button type="button" id="btnCerrar" class="btn btn-login  btn-flat  pull-left" data-dismiss="modal">Cerrar</button>
+						<input type="submit" class="btn btn-login  btn-flat  pull-right" value="Actualizar Información">	
+					</div>
+				</div>
+	      </div>
+	    </div>
+		</form>
+	  </div>
+	</div>
+	<!-- Modal -->
+
 	<!-- ENLACE A ARCHIVOS JS -->
 
 	<!-- jquery -->

@@ -1,4 +1,5 @@
 function llenar_lista(){
+     // console.log("Se ha llenado lista");
     preCarga(1000,4);
     $.ajax({
         url:"llenarLista.php",
@@ -74,3 +75,25 @@ $("#frmAlta").submit(function(e){
         e.preventDefault();
         return false;
 });
+
+function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,correo,tipo,sexo){
+
+    $("#frmActuliza")[0].reset();
+    $("#nombreE").val(nombre);
+    $("#paternoE").val(paterno);
+    $("#maternoE").val(materno);
+    $("#direccionE").val(direccion);
+    $("#telefonoE").val(telefono);
+    $("#fecha_nacE").val(fecha_nac);
+    $("#correoE").val(correo);
+    $("#tipoE").val(tipo);
+    $("#sexoE").val(sexo);
+
+    $(".select2").select2();
+
+    $("#modalEditar").modal("show");
+
+     $('#modalEditar').on('shown.bs.modal', function () {
+         $('#nombreE').focus();
+     });   
+}

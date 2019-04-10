@@ -15,7 +15,10 @@ $consulta=mysql_query("SELECT
 							telefono,
 							fecha_nacimiento,
 							correo,
-							tipo_persona
+							tipo_persona,
+							nombre,
+							ap_paterno,
+							ap_materno
 						FROM
 							personas",$conexion) or die (mysql_error());
 // $row=mysql_fetch_row($consulta)
@@ -48,6 +51,9 @@ $consulta=mysql_query("SELECT
 										$fecha_nac   =$row[6];
 										$correo      =$row[7];
 										$tipoPersona =$row[8];
+										$nombre      =$row[9];
+										$paterno     =$row[11];
+										$materno     =$row[11];
 
 										$sexo=($sexo=='M')?'<i class="fas fa-male fa-lg"></i>':'<i class="fas fa-female fa-lg"></i>';
 				                      ?>
@@ -77,7 +83,18 @@ $consulta=mysql_query("SELECT
 				                          	<?php echo $sexo; ?>
 				                          </p>	
 				                        <td>
-				                          <button type="button" class="btn btn-login btn-sm" >
+				                          <button type="button" class="btn btn-login btn-sm" 
+				                          onclick="abrirModalEditar(
+				                          							'<?php echo $nombre ?>',
+				                          							'<?php echo $paterno ?>',
+				                          							'<?php echo $materno ?>',
+				                          							'<?php echo $direccion ?>',
+				                          							'<?php echo $telefono ?>',
+				                          							'<?php echo $fecha_nac ?>',
+				                          							'<?php echo $correo ?>',
+				                          							'<?php echo $tipoPersona ?>'
+
+				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>
 				                        </td>
