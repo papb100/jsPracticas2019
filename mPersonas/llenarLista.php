@@ -56,34 +56,37 @@ $consulta=mysql_query("SELECT
 										$materno     = $row[11];
 										$genero      = $row[3];				
 										$sexo=($sexo=='M')?'<i class="fas fa-male fa-lg"></i>':'<i class="fas fa-female fa-lg"></i>';
-				                      ?>
+										$checado=($activo==1)?'checked':'';		
+										$desabilitar=($activo==0)?'disabled':'';
+										$claseDesabilita=($activo==0)?'desabilita':'';
+															?>
 				                      <tr>
-				                        <td>
-				                          <p>
+				                        <td >
+				                          <p id="<?php echo "tConsecutivo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
 				                          	<?php echo "$n"; ?>
 				                          </p>
 				                        </td>
 				                        <td>
-				                          <p>
+																<p id="<?php echo "tPersona".$n; ?>" class="<?php echo $claseDesabilita; ?>">
 				                          	<?php echo $nomPersona; ?>
 				                          </p>
 				                        </td>
 				                        <td>
-				                          <p>
+																<p id="<?php echo "tCorreo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
 				                          	<?php echo $correo; ?>
 				                          </p>
 				                        </td>
 				                        <td>
-				                          <p>
+																<p id="<?php echo "tTelefono".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
 				                          	<?php echo $telefono; ?>
 				                          </p>
 				                        </td>
 				                        <td>
-				                          <p>
+																<p id="<?php echo "tSexo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
 				                          	<?php echo $sexo; ?>
 				                          </p>	
 				                        <td>
-				                          <button type="button" class="btn btn-login btn-sm" 
+				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
 				                          							'<?php echo $nombre ?>',
 				                          							'<?php echo $paterno ?>',
@@ -100,7 +103,7 @@ $consulta=mysql_query("SELECT
 				                          </button>
 				                        </td>
 				                        <td>
-											<input  data-size="small" data-style="android" value="<?php echo "$valor"; ?>" type="checkbox" <?php echo "$checado"; ?>  id="<?php echo "interruptor".$n; ?>"  data-toggle="toggle" data-on="Desactivar" data-off="Activar" data-onstyle="danger" data-offstyle="success" class="interruptor" data-width="100" onchange="status(this.value,<?php echo $n; ?>,<?php echo $idTablaPrincipal; ?>,'<?php echo $nombre; ?>');">
+											<input  data-size="small" data-style="android" value="<?php echo "$valor"; ?>" type="checkbox" <?php echo "$checado"; ?>  id="<?php echo "interruptor".$n; ?>"  data-toggle="toggle" data-on="Desactivar" data-off="Activar" data-onstyle="danger" data-offstyle="success" class="interruptor" data-width="100" onchange="status(<?php echo $n; ?>,<?php echo $idPersona; ?>);">
 				                        </td>
 				                      </tr>
 				                      <?php

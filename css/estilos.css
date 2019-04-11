@@ -32,6 +32,10 @@ textarea:focus, input:focus, input[type]:focus {
 .salto {
 	margin-bottom: 30px;
 }
+
+.desabilita{
+	color:#95a5a6;
+}
 /*-------------Fin General-------------*/
 
 

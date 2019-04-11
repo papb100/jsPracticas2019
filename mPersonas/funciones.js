@@ -143,3 +143,51 @@ $("#frmActuliza").submit(function(e){
         e.preventDefault();
         return false;
 });
+
+function status(concecutivo,id){
+    var nomToggle = "#interruptor"+concecutivo;
+    var nomBoton  = "#boton"+concecutivo;
+    var numero    = "#tConsecutivo"+concecutivo;
+    var persona   = "#tPersona"+concecutivo;
+    var correo    = "#tCorreo"+concecutivo;
+    var telefono  = "#tTelefono"+concecutivo;
+    var sexo      = "#tSexo"+concecutivo;
+
+    if( $(nomToggle).is(':checked') ) {
+        // console.log("activado");
+        var valor=0;
+        alertify.success('Registro habilitado' );
+        $(nomBoton).removeAttr("disabled");
+        $(numero).removeClass("desabilita");
+        $(persona).removeClass("desabilita");
+        $(correo).removeClass("desabilita");
+        $(telefono).removeClass("desabilita");
+        $(sexo).removeClass("desabilita");
+    }else{
+        console.log("desactivado");
+        var valor=1;
+        alertify.error('Registro deshabilitado' );
+        $(nomBoton).attr("disabled", "disabled");
+        $(numero).addClass("desabilita");
+        $(persona).addClass("desabilita");
+        $(correo).addClass("desabilita");
+        $(telefono).addClass("desabilita");
+        $(sexo).addClass("desabilita");
+    }
+    // console.log(concecutivo+' | '+id);
+    $.ajax({
+        url:"status.php",
+        type:"POST",
+        dateType:"html",
+        data:{
+                'valor':valor,
+                'id':id
+             },
+        success:function(respuesta){
+            // console.log(respuesta);
+        },
+        error:function(xhr,status){
+            alert(xhr);
+        },
+    });
+}
