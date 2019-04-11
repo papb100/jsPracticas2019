@@ -42,19 +42,19 @@ $consulta=mysql_query("SELECT
 				                    <?php 
 				                    $n=1;
 				                    while ($row=mysql_fetch_row($consulta)) {
-										$idPersona   =$row[0];
-										$activo      =$row[1];
-										$nomPersona  =$row[2];
-										$sexo        =$row[3];
-										$direccion   =$row[4];
-										$telefono    =$row[5];
-										$fecha_nac   =$row[6];
-										$correo      =$row[7];
-										$tipoPersona =$row[8];
-										$nombre      =$row[9];
-										$paterno     =$row[11];
-										$materno     =$row[11];
-
+										$idPersona   = $row[0];
+										$activo      = $row[1];
+										$nomPersona  = $row[2];
+										$sexo        = $row[3];
+										$direccion   = $row[4];
+										$telefono    = $row[5];
+										$fecha_nac   = $row[6];
+										$correo      = $row[7];
+										$tipoPersona = $row[8];
+										$nombre      = $row[9];
+										$paterno     = $row[10];
+										$materno     = $row[11];
+										$genero      = $row[3];				
 										$sexo=($sexo=='M')?'<i class="fas fa-male fa-lg"></i>':'<i class="fas fa-female fa-lg"></i>';
 				                      ?>
 				                      <tr>
@@ -92,8 +92,9 @@ $consulta=mysql_query("SELECT
 				                          							'<?php echo $telefono ?>',
 				                          							'<?php echo $fecha_nac ?>',
 				                          							'<?php echo $correo ?>',
-				                          							'<?php echo $tipoPersona ?>'
-
+																								'<?php echo $tipoPersona ?>',
+																								'<?php echo $genero ?>',
+																								'<?php echo $idPersona ?>'
 				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>

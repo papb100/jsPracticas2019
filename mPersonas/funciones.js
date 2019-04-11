@@ -76,8 +76,8 @@ $("#frmAlta").submit(function(e){
         return false;
 });
 
-function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,correo,tipo,sexo){
-
+function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,correo,tipo,sexo,ide){
+   
     $("#frmActuliza")[0].reset();
     $("#nombreE").val(nombre);
     $("#paternoE").val(paterno);
@@ -88,6 +88,7 @@ function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,co
     $("#correoE").val(correo);
     $("#tipoE").val(tipo);
     $("#sexoE").val(sexo);
+    $("#idE").val(ide);
 
     $(".select2").select2();
 
@@ -97,3 +98,48 @@ function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,co
          $('#nombreE').focus();
      });   
 }
+
+$("#frmActuliza").submit(function(e){
+  
+    var nombre    = $("#nombreE").val();
+    var paterno   = $("#paternoE").val();
+    var materno   = $("#maternoE").val();
+    var direccion = $("#direccionE").val();
+    var sexo      = $("#sexoE").val();
+    var telefono  = $("#telefonoE").val();
+    var fecha_nac = $("#fecha_nacE").val();
+    var correo    = $("#correoE").val();
+    var tipo      = $("#tipoE").val();
+    var ide       = $("#idE").val();
+
+        $.ajax({
+            url:"actualizar.php",
+            type:"POST",
+            dateType:"html",
+            data:{
+                    'nombre':nombre,
+                    'paterno':paterno,
+                    'materno':materno,
+                    'direccion':direccion,
+                    'sexo':sexo,
+                    'telefono':telefono,
+                    'fecha_nac':fecha_nac,
+                    'correo':correo,
+                    'tipo':tipo,
+                    'ide':ide
+                 },
+            success:function(respuesta){
+
+            alertify.set('notifier','position', 'bottom-right');
+            alertify.success('Se ha actualizado el registro' );
+            $("#frmActuliza")[0].reset();
+            $("#modalEditar").modal("hide");
+            llenar_lista();
+            },
+            error:function(xhr,status){
+                alert(xhr);
+            },
+        });
+        e.preventDefault();
+        return false;
+});

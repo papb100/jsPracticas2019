@@ -163,7 +163,7 @@ $opcionMenu="A";
 	        <h4 class="modal-title">Editar datos personas</h4>
 	      </div>
 	      <div class="modal-body">
-			
+				<input type="hidden" id="idE">
 				<div class="row">
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
 						<div class="form-group">
