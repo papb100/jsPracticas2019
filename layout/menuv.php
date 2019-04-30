@@ -11,7 +11,7 @@
 							<a href=""><i class="fas fa-running"></i> Carreras</a>
 						</li>
 						<li class="list-unstyled">
-							<a href=""><i class="fas fa-user"></i> Usuarios</a>
+							<a href="../mUsuarios/index.php"><i class="fas fa-user"></i> Usuarios</a>
 						</li>
 					</ul>
 				</div>

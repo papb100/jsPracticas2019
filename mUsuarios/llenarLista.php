@@ -7,20 +7,16 @@ mysql_query("SET NAMES utf8");
 
 // Consulta a la base de datos
 $consulta=mysql_query("SELECT
-							id_persona,
-							activo,
-							CONCAT(ap_paterno,' ',ap_materno,' ',nombre) AS Persona,
-							sexo,
-							direccion,
-							telefono,
-							fecha_nacimiento,
-							correo,
-							tipo_persona,
-							nombre,
-							ap_paterno,
-							ap_materno
-						FROM
-							personas",$conexion) or die (mysql_error());
+												id_usuario,
+												id_persona,
+												usuario,
+												activo,
+												(SELECT personas.nombre FROM personas WHERE personas.id_persona=usuarios.id_usuario) AS nUsuario,
+												(SELECT personas.ap_paterno FROM personas WHERE personas.id_persona=usuarios.id_usuario) AS pUsuario,
+												(SELECT personas.ap_materno FROM personas WHERE personas.id_persona=usuarios.id_usuario) AS mUsuario,
+												fecha_registro
+												FROM
+												usuarios",$conexion) or die (mysql_error());
 // $row=mysql_fetch_row($consulta)
  ?>
 				            <div class="table-responsive">
@@ -30,11 +26,10 @@ $consulta=mysql_query("SELECT
 				                      <tr class="info" >
 				                        <th>#</th>
 				                        <th>Nombre</th>
-				                        <th>Correo</th>
-				                        <th>Telefono</th>
-				                        <th>Genero</th>
+				                        <th>Usuario</th>
+				                        <th>Registro</th>
 				                        <th>Editar</th>
-				                        <th>Estatus</th>
+																<th>Estatus</th>
 				                      </tr>
 				                    </thead>
 
@@ -42,23 +37,16 @@ $consulta=mysql_query("SELECT
 				                    <?php 
 				                    $n=1;
 				                    while ($row=mysql_fetch_row($consulta)) {
-										$idPersona   = $row[0];
-										$activo      = $row[1];
-										$nomPersona  = $row[2];
-										$sexo        = $row[3];
-										$direccion   = $row[4];
-										$telefono    = $row[5];
-										$fecha_nac   = $row[6];
-										$correo      = $row[7];
-										$tipoPersona = $row[8];
-										$nombre      = $row[9];
-										$paterno     = $row[10];
-										$materno     = $row[11];
-										$genero      = $row[3];				
-										$sexo=($sexo=='M')?'<i class="fas fa-male fa-lg"></i>':'<i class="fas fa-female fa-lg"></i>';
-										$checado=($activo==1)?'checked':'';		
-										$desabilitar=($activo==0)?'disabled':'';
-										$claseDesabilita=($activo==0)?'desabilita':'';
+										$idUsuario          = $row[0];
+										$activo             = $row[3];
+										$nomUsuarioCompleto = $row[5].' '.$row[6].' '.$row[4];
+										$idPersona          = $row[1];
+										$usuario            = $row[2];
+										$registro           = $row[7];
+
+										$checado         = ($activo == 1)?'checked' : '';		
+										$desabilitar     = ($activo == 0)?'disabled': '';
+										$claseDesabilita = ($activo == 0)?'desabilita':'';
 															?>
 				                      <tr>
 				                        <td >
@@ -67,25 +55,20 @@ $consulta=mysql_query("SELECT
 				                          </p>
 				                        </td>
 				                        <td>
-																<p id="<?php echo "tPersona".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $nomPersona; ?>
+																<p id="<?php echo "tNcompleto".$n; ?>" class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $nomUsuarioCompleto; ?>
 				                          </p>
 				                        </td>
 				                        <td>
-																<p id="<?php echo "tCorreo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $correo; ?>
+																<p id="<?php echo "tUsuario".$n; ?>" class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $usuario; ?>
 				                          </p>
 				                        </td>
 				                        <td>
-																<p id="<?php echo "tTelefono".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $telefono; ?>
+																<p id="<?php echo "tRegistro".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $registro; ?>
 				                          </p>
-				                        </td>
-				                        <td>
-																<p id="<?php echo "tSexo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $sexo; ?>
-				                          </p>	
-																</td>
+				                        </td>	
 				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
@@ -104,7 +87,7 @@ $consulta=mysql_query("SELECT
 				                          </button>
 				                        </td>
 				                        <td>
-											<input  data-size="small" data-style="android" value="<?php echo "$valor"; ?>" type="checkbox" <?php echo "$checado"; ?>  id="<?php echo "interruptor".$n; ?>"  data-toggle="toggle" data-on="Desactivar" data-off="Activar" data-onstyle="danger" data-offstyle="success" class="interruptor" data-width="100" onchange="status(<?php echo $n; ?>,<?php echo $idPersona; ?>);">
+											<input  data-size="small" data-style="android" value="<?php echo "$valor"; ?>" type="checkbox" <?php echo "$checado"; ?>  id="<?php echo "interruptor".$n; ?>"  data-toggle="toggle" data-on="Desactivar" data-off="Activar" data-onstyle="danger" data-offstyle="success" class="interruptor" data-width="100" onchange="status(<?php echo $n; ?>,<?php echo $idUsuario; ?>);">
 				                        </td>
 				                      </tr>
 				                      <?php
@@ -116,13 +99,12 @@ $consulta=mysql_query("SELECT
 
 				                    <tfoot align="center">
 				                      <tr class="info">
-				                        <th>#</th>
+															<th>#</th>
 				                        <th>Nombre</th>
-				                        <th>Correo</th>
-				                        <th>Telefono</th>
-				                        <th>Genero</th>
+				                        <th>Usuario</th>
+				                        <th>Registro</th>
 				                        <th>Editar</th>
-				                        <th>Estatus</th>
+																<th>Estatus</th>
 				                      </tr>
 				                    </tfoot>
 				                </table>
@@ -167,9 +149,10 @@ $consulta=mysql_query("SELECT
                               }
                           },
                          {
-                              text: 'Nueva Persona',
+                              text: 'Nuevo Usuario',
                               action: function (  ) {
-                                      ver_alta();
+																			ver_alta();
+																			llenar_persona();
                               },
                               counter: 1
                           },
