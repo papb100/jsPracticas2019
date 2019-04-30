@@ -4,12 +4,14 @@ include "../conexion/conexion.php";
 mysql_query("SET NAMES utf8");
 
 $consulta = mysql_query("SELECT
-							id_persona,
-							CONCAT(ap_paterno,' ',ap_materno,' ',nombre) AS 	Persona
+							personas.id_persona,
+							CONCAT(personas.ap_paterno,' ',personas.ap_materno,' ',personas.nombre) AS 	Persona
 							FROM
-							personas
-							WHERE activo=1 AND tipo_persona='trabajador'
-							ORDER BY ap_paterno ASC",$conexion)or die(mysql_error());
+							usuarios
+							RIGHT JOIN personas ON usuarios.id_persona = personas.id_persona
+							WHERE  ISNULL(id_usuario)
+							AND personas.activo=1 AND personas.tipo_persona='trabajador'
+							ORDER BY personas.ap_paterno ASC",$conexion)or die(mysql_error());
 ?>
     <option value="0">Seleccione...</option>
 <?php

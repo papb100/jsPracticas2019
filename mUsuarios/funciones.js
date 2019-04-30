@@ -40,6 +40,7 @@ $("#frmAlta").submit(function(e){
     var contra    = $("#contra").val();
     var vContra   = $("#vContra").val();
 
+    // validacion para no meter id de persona en 0
     if(idPersona==0){
         alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
 
@@ -50,9 +51,26 @@ $("#frmAlta").submit(function(e){
             'message': 'Debes seleccionar el dato de una persona.' ,
             'onok': function(){ alertify.message('Gracias !');}
         }).show();
-        return;       
+        return false;       
     }
 
+    // validacion para que el nombre de usuario sea minimo de 5 caracteres
+    caracteres=$("#usuario").val().length;
+    if(caracteres < 5){
+        alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+
+        alertify.alert()
+        .setting({
+            'title':'Información',
+            'label':'Salir',
+            'message': 'La cantidad de caracteres para el usario debe de ser mayor a 5' ,
+            'onok': function(){ alertify.message('Gracias !');}
+        }).show();
+        $("#usuario").focus();
+        return false;       
+    }
+
+    // validacion para que las contraseñas coincidan
     if(contra != vContra){
         alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
 
@@ -64,9 +82,11 @@ $("#frmAlta").submit(function(e){
             'onok': function(){ alertify.message('Gracias !');}
         }).show();
         $("#contra").focus();
-        return;       
+        return false;       
     }
-    // console.log(nombreCompleto);
+  
+
+
 
         $.ajax({
             url:"guardar.php",
