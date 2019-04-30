@@ -11,9 +11,9 @@ $consulta=mysql_query("SELECT
 												id_persona,
 												usuario,
 												activo,
-												(SELECT personas.nombre FROM personas WHERE personas.id_persona=usuarios.id_usuario) AS nUsuario,
-												(SELECT personas.ap_paterno FROM personas WHERE personas.id_persona=usuarios.id_usuario) AS pUsuario,
-												(SELECT personas.ap_materno FROM personas WHERE personas.id_persona=usuarios.id_usuario) AS mUsuario,
+												(SELECT personas.nombre FROM personas WHERE personas.id_persona=usuarios.id_persona) AS nUsuario,
+												(SELECT personas.ap_paterno FROM personas WHERE personas.id_persona=usuarios.id_persona) AS pUsuario,
+												(SELECT personas.ap_materno FROM personas WHERE personas.id_persona=usuarios.id_persona) AS mUsuario,
 												fecha_registro
 												FROM
 												usuarios",$conexion) or die (mysql_error());

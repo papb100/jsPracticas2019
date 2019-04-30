@@ -35,38 +35,54 @@ $('#btnLista').on('click',function(){
 
 $("#frmAlta").submit(function(e){
   
-    var nombre    = $("#nombre").val();
-    var paterno   = $("#paterno").val();
-    var materno   = $("#materno").val();
-    var direccion = $("#direccion").val();
-    var sexo      = $("#sexo").val();
-    var telefono  = $("#telefono").val();
-    var fecha_nac = $("#fecha_nac").val();
-    var correo    = $("#correo").val();
-    var tipo      = $("#tipo").val();
+    var idPersona = $("#idPersona").val();
+    var usuario   = $("#usuario").val();
+    var contra    = $("#contra").val();
+    var vContra   = $("#vContra").val();
+
+    if(idPersona==0){
+        alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+
+        alertify.alert()
+        .setting({
+            'title':'Información',
+            'label':'Salir',
+            'message': 'Debes seleccionar el dato de una persona.' ,
+            'onok': function(){ alertify.message('Gracias !');}
+        }).show();
+        return;       
+    }
+
+    if(contra != vContra){
+        alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+
+        alertify.alert()
+        .setting({
+            'title':'Información',
+            'label':'Salir',
+            'message': 'Las contraseñas deben de ser iguales.' ,
+            'onok': function(){ alertify.message('Gracias !');}
+        }).show();
+        $("#contra").focus();
+        return;       
+    }
+    // console.log(nombreCompleto);
 
         $.ajax({
             url:"guardar.php",
             type:"POST",
             dateType:"html",
             data:{
-                    'nombre':nombre,
-                    'paterno':paterno,
-                    'materno':materno,
-                    'direccion':direccion,
-                    'sexo':sexo,
-                    'telefono':telefono,
-                    'fecha_nac':fecha_nac,
-                    'correo':correo,
-                    'tipo':tipo
+                    'idPersona':idPersona,
+                    'usuario':usuario,
+                    'contra':contra
                  },
             success:function(respuesta){
               
             alertify.set('notifier','position', 'bottom-right');
             alertify.success('Se ha guardado el registro' );
             $("#frmAlta")[0].reset();
-            $("#nombre").focus();
-            // llenarLista();
+            llenar_persona();
             },
             error:function(xhr,status){
                 alert(xhr);

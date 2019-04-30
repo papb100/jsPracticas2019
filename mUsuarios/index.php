@@ -80,13 +80,13 @@ $opcionMenu="A";
 									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<div class="form-group">
 											<label for="contra">Contraseña:</label>
-											<input type="text" id="contra" class="form-control " required="" placeholder="Escribe la contraseña">
+											<input type="password" id="contra" class="form-control " required="" placeholder="Escribe la contraseña">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<div class="form-group">
 											<label for="vContra">Verificar contraseña:</label>
-											<input type="text" id="vContra" class="form-control " required="" placeholder="Vuelva a escribir la contraseña">
+											<input type="password" id="vContra" class="form-control " required="" placeholder="Vuelva a escribir la contraseña">
 										</div>
 									</div>
 
