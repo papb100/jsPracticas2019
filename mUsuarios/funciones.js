@@ -86,8 +86,6 @@ $("#frmAlta").submit(function(e){
     }
   
 
-
-
         $.ajax({
             url:"guardar.php",
             type:"POST",
@@ -112,26 +110,22 @@ $("#frmAlta").submit(function(e){
         return false;
 });
 
-function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,correo,tipo,sexo,ide){
+function abrirModalEditar(idUsuario,idPersona,usuario,contra,){
    
     $("#frmActuliza")[0].reset();
-    $("#nombreE").val(nombre);
-    $("#paternoE").val(paterno);
-    $("#maternoE").val(materno);
-    $("#direccionE").val(direccion);
-    $("#telefonoE").val(telefono);
-    $("#fecha_nacE").val(fecha_nac);
-    $("#correoE").val(correo);
-    $("#tipoE").val(tipo);
-    $("#sexoE").val(sexo);
-    $("#idE").val(ide);
 
-    $(".select2").select2();
+    $("#idE").val(idUsuario);
+    $("#nombreE").val(idPersona);
+    $("#usuarioE").val(usuario);
+    $("#contraE").val(contra);
+    $("#vContraE").val(contra);
+
+    // $(".select2").select2();
 
     $("#modalEditar").modal("show");
 
      $('#modalEditar').on('shown.bs.modal', function () {
-         $('#nombreE').focus();
+         $('#usuarioE').focus();
      });   
 }
 
@@ -187,12 +181,14 @@ function status(concecutivo,id){
     var nCompleto = "#tNcompleto"+concecutivo;
     var usuario   = "#tUsuario"+concecutivo;
     var registro  = "#tRegistro"+concecutivo;
+    var nomBotonR  = "#botonR"+concecutivo;
 
     if( $(nomToggle).is(':checked') ) {
         // console.log("activado");
         var valor=0;
         alertify.success('Registro habilitado' );
         $(nomBoton).removeAttr("disabled");
+        $(nomBotonR).removeAttr("disabled");
         $(numero).removeClass("desabilita");
         $(nCompleto).removeClass("desabilita");
         $(usuario).removeClass("desabilita");
@@ -203,6 +199,7 @@ function status(concecutivo,id){
         var valor=1;
         alertify.error('Registro deshabilitado' );
         $(nomBoton).attr("disabled", "disabled");
+        $(nomBotonR).attr("disabled", "disabled");
         $(numero).addClass("desabilita");
         $(nCompleto).addClass("desabilita");
         $(usuario).addClass("desabilita");
@@ -244,4 +241,40 @@ function llenar_persona()
             alert('Disculpe, existió un problema');
         },
     });
+}
+
+function restaurarContra(idUser){
+    // console.log(idUser);
+    $.ajax({
+        url:"restaurarContra.php",
+        type:"POST",
+        dateType:"html",
+        data:{
+                'idUser':idUser
+             },
+        success:function(respuesta){
+
+            alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+
+            alertify.alert()
+            .setting({
+                'title':'Información',
+                'label':'Salir',
+                'message': 'La contraseña ha sido modificada' ,
+                'onok': function(){ alertify.message('Gracias !');}
+            }).show();
+
+        },
+        error:function(xhr,status){
+            alert(xhr);
+        },
+    });
+}
+
+function mostrarContra(){
+    var btnMostrar=$('#btnMostrar').val();
+    console.log(btnMostrar);
+    $("#contraE").attr("type","text");
+    $("#vContraE").attr("type","text");
+    $("#btnMostrar").attr("value","visto");
 }

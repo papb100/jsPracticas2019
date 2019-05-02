@@ -119,7 +119,7 @@ $opcionMenu="A";
 
 	<!-- Modal -->
 	<div id="modalEditar" class="modal fade" role="dialog">
-	  <div class="modal-dialog modal-lg">
+	  <div class="modal-dialog modal-md">
 
 	    <!-- Modal content-->
 	    <form id="frmActuliza">
@@ -131,64 +131,28 @@ $opcionMenu="A";
 	      <div class="modal-body">
 				<input type="hidden" id="idE">
 				<div class="row">
-					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
 						<div class="form-group">
-							<label for="nombreE">Nombre de la Persona:</label>
+							<label for="nombreE">Nombre del usuario:</label>
 							<input type="text" id="nombreE" class="form-control " autofocus="" required="" placeholder="Escribe el nombre">
 						</div>
 					</div>
-					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
 						<div class="form-group">
-							<label for="paternoE">Apellido Paterno:</label>
-							<input type="text" id="paternoE" class="form-control " required="" placeholder="Escribe el apellido">
+							<label for="usuarioE">Usuario:</label>
+							<input type="text" id="usuarioE" class="form-control " required="" placeholder="Escribe el nombre de usuario">
 						</div>
 					</div>
-					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
-							<label for="maternoE">Apellido Materno:</label>
-							<input type="text" id="maternoE" class="form-control " required="" placeholder="Escribe el apellido">
+							<label for="contraE">Contraseña:</label>
+							<input type="password" id="contraE" class="form-control " required="" placeholder="Escribe la contraseña">
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
-							<label for="direccionE">Dirección:</label>
-							<input type="text" id="direccionE" class="form-control " required="" placeholder="Escribe la dirección completo">
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="sexoE">Sexo:</label>
-							<select  id="sexoE" class="select2 form-control " style="width: 100%">
-								<option value="M">Masculino</option>
-								<option value="F">Femenino</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="telefonoE">Teléfono:</label>
-							<input type="text" id="telefonoE" class="form-control " required="" placeholder="Escribe el telefono">
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="fecha_nacE">Fecha de Nacimiento:</label>
-							<input type="date" id="fecha_nacE" class="form-control " required="" placeholder="yyyy-mm-dd">
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
-						<div class="form-group">
-							<label for="correoE">Correo:</label>
-							<input type="text" id="correoE" class="form-control " required="" placeholder="email">
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-						<div class="form-group">
-							<label for="tipoE">Tipo de persona:</label>
-							<select  id="tipoE" class="select2 form-control " style="width: 100%">
-								<option value="estudiante">Estudiante</option>
-								<option value="trabajador">Trabajador</option>
-							</select>
+							<label for="vContraE">Verificar Contraseña:</label>
+							<input type="password" id="vContraE" class="form-control " required="" placeholder="Vuelve a esrcribir la contraseña">
 						</div>
 					</div>
 					<hr class="linea">
@@ -198,6 +162,9 @@ $opcionMenu="A";
 				<div class="row">
 					<div class="col-lg-12">
 						<button type="button" id="btnCerrar" class="btn btn-login  btn-flat  pull-left" data-dismiss="modal">Cerrar</button>
+						<button type="button" id="btnMostrar" class="btn btn-login  btn-flat  pull-left" onclick="mostrarContra()" value="oculto">
+						<i class="far fa-eye fa-lg" id="icoMostrar"></i>
+						</button>
 						<input type="submit" class="btn btn-login  btn-flat  pull-right" value="Actualizar Información">	
 					</div>
 				</div>

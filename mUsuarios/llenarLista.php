@@ -14,7 +14,8 @@ $consulta=mysql_query("SELECT
 												(SELECT personas.nombre FROM personas WHERE personas.id_persona=usuarios.id_persona) AS nUsuario,
 												(SELECT personas.ap_paterno FROM personas WHERE personas.id_persona=usuarios.id_persona) AS pUsuario,
 												(SELECT personas.ap_materno FROM personas WHERE personas.id_persona=usuarios.id_persona) AS mUsuario,
-												fecha_registro
+												fecha_registro,
+												contra
 												FROM
 												usuarios",$conexion) or die (mysql_error());
 // $row=mysql_fetch_row($consulta)
@@ -28,6 +29,7 @@ $consulta=mysql_query("SELECT
 				                        <th>Nombre</th>
 				                        <th>Usuario</th>
 				                        <th>Registro</th>
+																<th>Restaurar</th>
 				                        <th>Editar</th>
 																<th>Estatus</th>
 				                      </tr>
@@ -43,6 +45,7 @@ $consulta=mysql_query("SELECT
 										$idPersona          = $row[1];
 										$usuario            = $row[2];
 										$registro           = $row[7];
+										$contra             = $row[8];
 
 										$checado         = ($activo == 1)?'checked' : '';		
 										$desabilitar     = ($activo == 0)?'disabled': '';
@@ -70,18 +73,20 @@ $consulta=mysql_query("SELECT
 				                          </p>
 				                        </td>	
 				                        <td>
+				                          <button id="<?php echo "botonR".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
+				                          onclick="restaurarContra(
+				                          							'<?php echo $idUsuario ?>'
+				                          							);">
+				                          	<i class="fas fa-sync-alt"></i>
+				                          </button>
+				                        </td>
+				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
-				                          							'<?php echo $nombre ?>',
-				                          							'<?php echo $paterno ?>',
-				                          							'<?php echo $materno ?>',
-				                          							'<?php echo $direccion ?>',
-				                          							'<?php echo $telefono ?>',
-				                          							'<?php echo $fecha_nac ?>',
-				                          							'<?php echo $correo ?>',
-																								'<?php echo $tipoPersona ?>',
-																								'<?php echo $genero ?>',
-																								'<?php echo $idPersona ?>'
+				                          							'<?php echo $idUsuario  ?>',
+				                          							'<?php echo $idPersona ?>',
+				                          							'<?php echo $usuario ?>',
+				                          							'<?php echo $contra ?>'
 				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>
@@ -103,6 +108,7 @@ $consulta=mysql_query("SELECT
 				                        <th>Nombre</th>
 				                        <th>Usuario</th>
 				                        <th>Registro</th>
+																<th>Restaurar</th>
 				                        <th>Editar</th>
 																<th>Estatus</th>
 				                      </tr>
