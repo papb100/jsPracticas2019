@@ -114,13 +114,13 @@ function abrirModalEditar(idUsuario,idPersona,usuario,contra,){
    
     $("#frmActuliza")[0].reset();
 
+    llenar_personaU(idPersona);
+
     $("#idE").val(idUsuario);
-    $("#nombreE").val(idPersona);
+    
     $("#usuarioE").val(usuario);
     $("#contraE").val(contra);
     $("#vContraE").val(contra);
-
-    // $(".select2").select2();
 
     $("#modalEditar").modal("show");
 
@@ -131,31 +131,49 @@ function abrirModalEditar(idUsuario,idPersona,usuario,contra,){
 
 $("#frmActuliza").submit(function(e){
   
-    var nombre    = $("#nombreE").val();
-    var paterno   = $("#paternoE").val();
-    var materno   = $("#maternoE").val();
-    var direccion = $("#direccionE").val();
-    var sexo      = $("#sexoE").val();
-    var telefono  = $("#telefonoE").val();
-    var fecha_nac = $("#fecha_nacE").val();
-    var correo    = $("#correoE").val();
-    var tipo      = $("#tipoE").val();
-    var ide       = $("#idE").val();
+    var usuario = $("#usuarioE").val();
+    var contra  = $("#contraE").val();
+    var vContra  = $("#vContraE").val();
+
+       // validacion para que el nombre de usuario sea minimo de 5 caracteres
+       caracteres=$("#usuarioE").val().length;
+       if(caracteres < 5){
+           alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+   
+           alertify.alert()
+           .setting({
+               'title':'Información',
+               'label':'Salir',
+               'message': 'La cantidad de caracteres para el usario debe de ser mayor a 5' ,
+               'onok': function(){ alertify.message('Gracias !');}
+           }).show();
+           $("#usuarioE").focus();
+           return false;       
+       }
+   
+       // validacion para que las contraseñas coincidan
+       if(contra != vContra){
+           alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+   
+           alertify.alert()
+           .setting({
+               'title':'Información',
+               'label':'Salir',
+               'message': 'Las contraseñas deben de ser iguales.' ,
+               'onok': function(){ alertify.message('Gracias !');}
+           }).show();
+           $("#contra").focus();
+           return false;       
+       }
+    var ide     = $("#idE").val();
 
         $.ajax({
             url:"actualizar.php",
             type:"POST",
             dateType:"html",
             data:{
-                    'nombre':nombre,
-                    'paterno':paterno,
-                    'materno':materno,
-                    'direccion':direccion,
-                    'sexo':sexo,
-                    'telefono':telefono,
-                    'fecha_nac':fecha_nac,
-                    'correo':correo,
-                    'tipo':tipo,
+                    'usuario':usuario,
+                    'contra':contra,
                     'ide':ide
                  },
             success:function(respuesta){
@@ -273,8 +291,40 @@ function restaurarContra(idUser){
 
 function mostrarContra(){
     var btnMostrar=$('#btnMostrar').val();
-    console.log(btnMostrar);
-    $("#contraE").attr("type","text");
-    $("#vContraE").attr("type","text");
-    $("#btnMostrar").attr("value","visto");
+    // console.log(btnMostrar);
+    preCarga(300);
+    if(btnMostrar=='oculto'){
+        $("#contraE").attr("type","text");
+        $("#vContraE").attr("type","text");
+        $("#btnMostrar").attr("value","visto");
+        $("#icoMostrar").removeClass("far fa-eye fa-lg");
+        $("#icoMostrar").addClass("far fa-eye-slash fa-lg");
+    }
+    else{
+        $("#contraE").attr("type","password");
+        $("#vContraE").attr("type","password");
+        $("#btnMostrar").attr("value","oculto");
+        $("#icoMostrar").removeClass("far fa-eye-slash fa-lg");
+        $("#icoMostrar").addClass("far fa-eye fa-lg");       
+    }
+}
+
+function llenar_personaU(idPersona)
+{
+    // alert(idRepre);
+    $.ajax({
+        url : 'comboPersonasU.php',
+        // data : {'id':id},
+        type : 'POST',
+        dataType : 'html',
+        success : function(respuesta) {
+            $("#nombreE").empty();
+            $("#nombreE").html(respuesta);
+            $("#nombreE").val(idPersona);
+            $("#nombreE").select2();       
+        },
+        error : function(xhr, status) {
+            alert('Disculpe, existió un problema');
+        },
+    });
 }

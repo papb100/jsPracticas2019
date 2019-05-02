@@ -134,7 +134,8 @@ $opcionMenu="A";
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
 						<div class="form-group">
 							<label for="nombreE">Nombre del usuario:</label>
-							<input type="text" id="nombreE" class="form-control " autofocus="" required="" placeholder="Escribe el nombre">
+							<select  id="nombreE" class="select2 form-control " style="width: 100%" disabled>
+							</select>
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
