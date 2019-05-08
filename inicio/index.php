@@ -53,7 +53,11 @@
 		 ?>			
 
 	</footer>
+
 	<script src="../plugins/jQuery/jQuery-2.1.4.min.js"></script>
+	<!-- Preloaders -->
+    <script src="../plugins/Preloaders/jquery.preloaders.js"></script>
+	
 	<script src="../js/menu.js"></script>
 	<script src="../js/precarga.js"></script>
 	<script src="../js/salir.js"></script>

@@ -7,7 +7,7 @@ $contra  = $_POST["contra"];
 $ide     = $_POST["ide"];
 
 $usuario = trim($usuario);
-$contra  = trim($contra);
+// $contra  = trim($contra);
 
 $fecha   = date("Y-m-d"); 
 $hora    = date ("H: i: s");

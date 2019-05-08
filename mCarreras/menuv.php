@@ -17,5 +17,8 @@
 								<i class="fas fa-home"></i> Inicio 
 							</a>
 						</li >
+						<li class="list-unstyled">
+							<a href="#" onclick="salir();"><i class="fas fa-sign-out-alt"></i> Salir</a>
+						</li>
 					</ul>
 				</div>

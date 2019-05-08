@@ -215,6 +215,7 @@ $opcionMenu="A";
     <script src="funciones.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/precarga.js"></script>
+		<script src="../js/salir.js"></script>
 
     <!-- LLAMADAS A FUNCIONES E INICIALIZACION DE COMPONENTES -->
 

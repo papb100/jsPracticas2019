@@ -4,10 +4,18 @@ function salir(){
     alertify.confirm(
         'Salir', 
         '¿Deseas salir del Sistema?', 
-        function(){ alertify.success('Salir') ; 
-        console.log('salida')}, 
-        function(){ alertify.error('Cancelar') ; 
-        console.log('cancelado')}
+        function(){ 
+                alertify.success('Saliendo....') ; 
+               preCarga(2000,2);
+                setInterval(salida, 2000);
+            }, 
+        function(){ 
+                alertify.error('Cancelar') ; 
+                console.log('cancelado')}
     );
 
+}
+
+function salida(){
+    window.location='../sesiones/cerrarsesion.php';
 }
