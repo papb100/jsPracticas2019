@@ -1,26 +1,16 @@
 <?php 
 // Conexion a la base de datos
 include'../conexion/conexion.php';
-
 // Codificacion de lenguaje
 mysql_query("SET NAMES utf8");
-
 // Consulta a la base de datos
 $consulta=mysql_query("SELECT
-							id_persona,
+							id_carrera,
 							activo,
-							CONCAT(ap_paterno,' ',ap_materno,' ',nombre) AS Persona,
-							sexo,
-							direccion,
-							telefono,
-							fecha_nacimiento,
-							correo,
-							tipo_persona,
 							nombre,
-							ap_paterno,
-							ap_materno
+							abreviatura
 						FROM
-							personas ORDER BY id_persona DESC",$conexion) or die (mysql_error());
+							carreras ORDER BY id_carrera DESC",$conexion) or die (mysql_error());
 // $row=mysql_fetch_row($consulta)
  ?>
 				            <div class="table-responsive">
@@ -29,10 +19,8 @@ $consulta=mysql_query("SELECT
 				                    <thead align="center">
 				                      <tr class="info" >
 				                        <th>#</th>
-				                        <th>Nombre</th>
-				                        <th>Correo</th>
-				                        <th>Telefono</th>
-				                        <th>Genero</th>
+				                        <th>Carrera</th>
+				                        <th>Abreviatura</th>
 				                        <th>Editar</th>
 				                        <th>Estatus</th>
 				                      </tr>
@@ -42,69 +30,46 @@ $consulta=mysql_query("SELECT
 				                    <?php 
 				                    $n=1;
 				                    while ($row=mysql_fetch_row($consulta)) {
-										$idPersona   = $row[0];
-										$activo      = $row[1];
-										$nomPersona  = $row[2];
-										$sexo        = $row[3];
-										$direccion   = $row[4];
-										$telefono    = $row[5];
-										$fecha_nac   = $row[6];
-										$correo      = $row[7];
-										$tipoPersona = $row[8];
-										$nombre      = $row[9];
-										$paterno     = $row[10];
-										$materno     = $row[11];
-										$genero      = $row[3];				
-										$sexo=($sexo=='M')?'<i class="fas fa-male fa-lg"></i>':'<i class="fas fa-female fa-lg"></i>';
-										$checado=($activo==1)?'checked':'';		
+										$idCarrera   =$row[0];
+										$activo      =$row[1];
+										$nomCarrera  =$row[2];
+										$abreviatura =$row[3];
+										
+										$checado=($activo==1)?'checked':'';
 										$desabilitar=($activo==0)?'disabled':'';
 										$claseDesabilita=($activo==0)?'desabilita':'';
-															?>
+				                      ?>
 				                      <tr>
 				                        <td >
-				                          <p id="<?php echo "tConsecutivo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
+				                          <p id="<?php echo "tConsecutivo".$n; ?>"class="<?php echo $claseDesabilita; ?>">
 				                          	<?php echo "$n"; ?>
 				                          </p>
 				                        </td>
 				                        <td>
-																<p id="<?php echo "tPersona".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $nomPersona; ?>
+				                          <p id="<?php echo "tCarrera".$n; ?>"class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $nomCarrera; ?>
 				                          </p>
 				                        </td>
 				                        <td>
-																<p id="<?php echo "tCorreo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $correo; ?>
+				                          <p id="<?php echo "tAbreviatura".$n; ?>" class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $abreviatura; ?>
 				                          </p>
 				                        </td>
+
 				                        <td>
-																<p id="<?php echo "tTelefono".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $telefono; ?>
-				                          </p>
-				                        </td>
-				                        <td>
-																<p id="<?php echo "tSexo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $sexo; ?>
-				                          </p>	
-																</td>
-				                        <td>
-				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
+				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?> type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
-				                          							'<?php echo $nombre ?>',
-				                          							'<?php echo $paterno ?>',
-				                          							'<?php echo $materno ?>',
-				                          							'<?php echo $direccion ?>',
-				                          							'<?php echo $telefono ?>',
-				                          							'<?php echo $fecha_nac ?>',
-				                          							'<?php echo $correo ?>',
-																								'<?php echo $tipoPersona ?>',
-																								'<?php echo $genero ?>',
-																								'<?php echo $idPersona ?>'
+				                          							'<?php echo $nomCarrera ?>',
+				                          							'<?php echo $abreviatura ?>',
+				                          							
+				                          							'<?php echo $idCarrera ?>'
+
 				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>
 				                        </td>
 				                        <td>
-											<input  data-size="small" data-style="android" value="<?php echo "$valor"; ?>" type="checkbox" <?php echo "$checado"; ?>  id="<?php echo "interruptor".$n; ?>"  data-toggle="toggle" data-on="Desactivar" data-off="Activar" data-onstyle="danger" data-offstyle="success" class="interruptor" data-width="100" onchange="status(<?php echo $n; ?>,<?php echo $idPersona; ?>);">
+											<input  data-size="small" data-style="android" value="<?php echo "$valor"; ?>" type="checkbox" <?php echo "$checado"; ?>  id="<?php echo "interruptor".$n; ?>"  data-toggle="toggle" data-on="Desactivar" data-off="Activar" data-onstyle="danger" data-offstyle="success" class="interruptor" data-width="100" onchange="status(<?php echo $n; ?>,<?php echo $idCarrera; ?>);">
 				                        </td>
 				                      </tr>
 				                      <?php
@@ -116,11 +81,9 @@ $consulta=mysql_query("SELECT
 
 				                    <tfoot align="center">
 				                      <tr class="info">
-				                        <th>#</th>
-				                        <th>Nombre</th>
-				                        <th>Correo</th>
-				                        <th>Telefono</th>
-				                        <th>Genero</th>
+				                         <th>#</th>
+				                        <th>Carrera</th>
+				                        <th>Abreviatura</th>
 				                        <th>Editar</th>
 				                        <th>Estatus</th>
 				                      </tr>
@@ -167,7 +130,7 @@ $consulta=mysql_query("SELECT
                               }
                           },
                          {
-                              text: 'Nueva Persona',
+                              text: 'Nueva Carrera',
                               action: function (  ) {
                                       ver_alta();
                               },
@@ -176,11 +139,9 @@ $consulta=mysql_query("SELECT
                   ]
               } );
           } );
-
       </script>
       <script>
             $(".interruptor").bootstrapToggle('destroy');
             $(".interruptor").bootstrapToggle();
       </script>
-    
     

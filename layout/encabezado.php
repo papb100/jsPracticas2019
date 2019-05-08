@@ -16,7 +16,7 @@
 					</a>
 				</li>
 				<li class="list-unstyled">
-					<a href="#" class="color borde">
+					<a href="#" onclick="salir();" class="color borde">
 						<i class="fas fa-sign-out-alt"></i>
 					</a>
 				</li>
