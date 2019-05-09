@@ -49,8 +49,8 @@ $fecha=date("Y-m-d");
 		 ?>
 	</header><!-- /header -->	
 	<div class="container-fluid" >
-		<div class="row">
-			<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical">
+	<div class="row" id="cuerpo" style="display:none">
+		<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical" >
 			<?php 
 				include('menuv.php');
 			 ?>
@@ -304,5 +304,10 @@ $fecha=date("Y-m-d");
 	</script>
 
 	<script type="text/javascript" src="../plugins/stacktable/stacktable.js"></script> 
+	<script>
+		window.onload = function() {
+			$("#cuerpo").fadeIn("slow");
+		};	
+	</script>
 </body>
 </html>

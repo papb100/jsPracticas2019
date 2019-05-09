@@ -48,12 +48,12 @@ $opcionMenu="A";
 	</header><!-- /header -->	
 	<div class="container-fluid" >
 		<div class="row">
-			<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical">
+		<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical" id="menu" style="display:none">
 			<?php 
 				include('menuv.php');
 			 ?>
 			</div>
-			<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10 cont">
+			<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10 cont" id="titulo" style="display:none">
 			   <div class="titulo borde sombra">
 			        <h3><?php echo $titulo; ?></h3>
 			   </div>	
@@ -223,6 +223,13 @@ $opcionMenu="A";
 		$(document).ready(function() { menuActivo(letra); });
 	</script>
 
-	<script type="text/javascript" src="../plugins/stacktable/stacktable.js"></script> 
+	<script type="text/javascript" src="../plugins/stacktable/stacktable.js"></script>
+	<script>
+		window.onload = function() {
+			$("#listaInicial").fadeIn("slow");
+			$("#menu").fadeIn("slow");
+			$("#titulo").fadeIn("slow");
+		};	
+	</script> 
 </body>
 </html>

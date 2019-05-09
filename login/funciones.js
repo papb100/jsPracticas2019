@@ -57,9 +57,7 @@ function ingresar(){
             },
         });
     }
-    
 }
-
 
 function entrando(){
     window.location='../inicio/index.php';
