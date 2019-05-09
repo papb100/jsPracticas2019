@@ -17,7 +17,7 @@
 			<div class="col-md-auto login-box borde sombra">
 				<h3 class="text-center titulo">Iniciar Sesión</h3>
 				<hr>
-				<form action="">
+				<form id="frmIngreso">
 					<div class="form-row">
 						<div class="col-md-12">
 							<label for="" class="colorLetra">Nombre de usuario:</label>
@@ -41,7 +41,7 @@
 			              			<i class="fas fa-key"></i>
 			              			Cambiar Contraseña
 		              			</button>
-		              			<button type="button" class="btn btn-login  btn-flat  pull-right" id="btnIngresar" onclick="ingresar();">
+		              			<button type="submit" class="btn btn-login  btn-flat  pull-right" id="btnIngresar">
 			              			<i class="fas fa-lock-open"></i>
 			              			Ingresar
 		              			</button>
@@ -68,6 +68,7 @@
 		<script>
 		window.onload = function() {
 			$("#cuerpo").fadeIn("slow");
+			$("#username").focus();
 		};	
 	</script>
 </body>

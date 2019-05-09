@@ -6,6 +6,8 @@ $idPersona = $_POST["idPersona"];
 $usuario   = $_POST["usuario"];
 $contra    = $_POST["contra"];
 
+$contraMD5=md5($contra);
+
 $idPersona = trim($idPersona);
 $usuario   = trim($usuario);
 // $contra    = trim($contra);
@@ -26,9 +28,9 @@ mysql_query("SET NAMES utf8");
  								)
 							VALUES
 								(
- 								'$idPersona ',
+ 								'$idPersona',
  								'$usuario',
- 								'$contra ',
+ 								'$contraMD5',
  								'1',
  								'$fecha',
  								'$hora',

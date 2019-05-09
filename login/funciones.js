@@ -1,4 +1,8 @@
-function ingresar(){
+function entrando(){
+    window.location='../inicio/index.php';
+}
+
+$("#frmIngreso").submit(function(e){
     var usuario,contra;
     usuario = $("#username").val();
     contra  = $("#pass").val();
@@ -56,9 +60,7 @@ function ingresar(){
                 alert(xhr);
             },
         });
-    }
-}
-
-function entrando(){
-    window.location='../inicio/index.php';
-}
+    } 
+        e.preventDefault();
+        return false;
+});

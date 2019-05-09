@@ -176,7 +176,12 @@ h3{
 		padding  : 2px;
 		font-size: 13px;
 	}
-	
+
+	/* .sidebar li{
+
+		display: inline;
+	} */
+
 	.sidebar  h2.fondo{
 		padding  : 2px;
 		font-size: 13px;

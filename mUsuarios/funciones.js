@@ -292,7 +292,7 @@ function restaurarContra(idUser){
 function mostrarContra(){
     var btnMostrar=$('#btnMostrar').val();
     // console.log(btnMostrar);
-    preCarga(300);
+    preCarga(300,2);
     if(btnMostrar=='oculto'){
         $("#contraE").attr("type","text");
         $("#vContraE").attr("type","text");
