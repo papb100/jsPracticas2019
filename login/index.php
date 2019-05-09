@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="../plugins/alertifyjs/css/themes/bootstrap.css">
 </head>
 <body class="login">
-	<div class="container">
+	<div class="container" style="display:none" id="cuerpo">
 		<div class="row justify-content-md-center">
 			<div class="col-md-auto login-box borde sombra">
 				<h3 class="text-center titulo">Iniciar Sesión</h3>
@@ -65,5 +65,10 @@
     <script src="../js/menu.js"></script>
     <script src="../js/precarga.js"></script>
 
+		<script>
+		window.onload = function() {
+			$("#cuerpo").fadeIn("slow");
+		};	
+	</script>
 </body>
 </html>
