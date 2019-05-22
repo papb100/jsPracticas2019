@@ -15,7 +15,8 @@ $contraMD5 = md5($contra);
                                 personas.ap_paterno,
                                 personas.ap_materno,
                                 CONCAT(personas.nombre,' ',personas.ap_paterno,' ',personas.ap_materno)as NomPersona,
-                                personas.id_persona
+                                personas.id_persona,
+                                usuarios.pvez
                             FROM
                                 usuarios
                             INNER JOIN personas ON usuarios.id_persona = personas.id_persona
@@ -24,7 +25,20 @@ $contraMD5 = md5($contra);
 
     $row=mysql_fetch_row($consulta);
     $contador=mysql_num_rows($consulta);
-    $contador=($contador==1)?1:0;
+    $pvez=$row[8];
+    // $contador=($contador==1)?1:0;
+    if($contador==1){
+        switch($pvez){
+            case 1 :
+                $contador=2;
+            break;
+            case 0 :
+                $contador=1;
+            break;
+        }
+    }else{
+        $contador==0;
+    }
 
     echo $contador;
 
