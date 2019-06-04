@@ -11,6 +11,9 @@
 							<a href="../mAlumnos/index.php"><i class="fas fa-user-graduate"></i> Alumnos </a>
 						</li >
 						<li class="list-unstyled">
+							<a href="../mFotografia/index.php"><i class="fas fa-image"></i> Fotografía </a>
+						</li >
+						<li class="list-unstyled">
 							<a href="../mCarreras/index.php"><i class="fas fa-running"></i> Carreras</a>
 						</li>
 						<li class="list-unstyled">
